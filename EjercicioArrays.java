@@ -1,6 +1,7 @@
 package ProblemaArray;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Collections; // Añadido para el Paso 3
 
 public class EjercicioArrays {
     
@@ -30,30 +31,14 @@ public class EjercicioArrays {
             listaClase[i] = i + 1;
         }
 
-        //buscamos al mayor
-        postEval = 11;
-        for(int i=0; i<control.length; i++){
-            int preEval = control[i];
-            if (preEval < postEval){
-                minNota = preEval;
-                postEval = control[i];
-            }
-        }
-        
-        //buscamos al menor
-        postEval = 0;
-        for(int i=0; i<control.length; i++){
-            int preEval = control[i];
-            if (preEval > postEval){
-                maxNota = preEval;
-                postEval = control[i];
-            }
-        }
-        
-        //Empezamos el uso de listas para facilitar la tarea de índices.
-        List notas = Arrays.asList(control);
+
+
+        List<Integer> notas = Arrays.asList(control);
+        minNota = Collections.min(notas);
+        maxNota = Collections.max(notas);
         indMinNota = notas.indexOf(minNota) + 1;
         indMaxNota = notas.indexOf(maxNota) + 1;
+
 
         //Comprobamos el resultado del ejercicio   
         System.out.println("Mínimo es: " + minNota);
@@ -63,7 +48,7 @@ public class EjercicioArrays {
         System.out.println("Lista de clase :" + Arrays.toString(listaClase));
         System.out.println("Array de Notas :" + notas);
         
-        // Mostramos prácticas y calificaciones (los bucles de llenado se eliminaron de aquí)
+        // Mostramos prácticas y calificaciones
         System.out.println("Prácticas      :" + Arrays.toString(practicas));
         System.out.println("Calificaciones :" + Arrays.toString(calificaciones));
         
@@ -134,11 +119,7 @@ public class EjercicioArrays {
         System.out.println("Resumen  de aprobados por nº de lista: " 
                 + Arrays.toString(s));
     
-        /*6. Suponer un vector de Calificaciones de tamaño 40 
-        (máximo de alumnos por clase), pero que solo almacena las
-        notas de 31 alumnos. Realizar un programa que permita insertar en
-        la posición 4 del vector la calificación de un nuevo 
-        alumno en clase al que supuestamente le corresponde como nota un 6.*/
+
         calif = new double[40];
         for (int j=0; j<31; j++){
             calif[j] = (int)(Math.random()*11);

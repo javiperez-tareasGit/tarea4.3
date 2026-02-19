@@ -6,23 +6,30 @@ public class EjercicioArrays {
     
     public static void main(String[] args) {
         int numAlumnos = 40;
-        //vector con las notas generadas
+        
+        // Inicializamos los arrays principales aquí
         Integer[] control = new Integer[numAlumnos];
-		int[] listaClase;
-		int[] practicas;
-		float[] calificaciones;
-		float[] estadistica;
-		int[] aprobados;
-		int[] suspensos;
+        int[] listaClase = new int[numAlumnos];
+        int[] practicas = new int[numAlumnos];
+        float[] calificaciones = new float[numAlumnos];
+        
+        float[] estadistica;
+        int[] aprobados;
+        int[] suspensos;
         int maxNota = 0;
         int minNota = 0;
         int indMaxNota, indMinNota;
         int postEval;
-		double[] calif;
-        //Genera notas random entre 1 y 10
-        for(int i=0; i < control.length; i++){
-            control[i] = (int)(Math.random()*11);
+        double[] calif;
+        
+
+        for (int i = 0; i < numAlumnos; i++) {
+            control[i] = (int)(Math.random() * 11);
+            practicas[i] = (int)(Math.random() * 11);
+            calificaciones[i] = (((float) control[i] + (float) practicas[i]) / 2);
+            listaClase[i] = i + 1;
         }
+
         //buscamos al mayor
         postEval = 11;
         for(int i=0; i<control.length; i++){
@@ -32,6 +39,7 @@ public class EjercicioArrays {
                 postEval = control[i];
             }
         }
+        
         //buscamos al menor
         postEval = 0;
         for(int i=0; i<control.length; i++){
@@ -41,11 +49,7 @@ public class EjercicioArrays {
                 postEval = control[i];
             }
         }
-        //creamos una lista de los alumnos de la clase
-        listaClase = new int[numAlumnos];
-        for (int i = 0; i < numAlumnos; i++){
-            listaClase[i] = i+1;
-        }
+        
         //Empezamos el uso de listas para facilitar la tarea de índices.
         List notas = Arrays.asList(control);
         indMinNota = notas.indexOf(minNota) + 1;
@@ -59,19 +63,7 @@ public class EjercicioArrays {
         System.out.println("Lista de clase :" + Arrays.toString(listaClase));
         System.out.println("Array de Notas :" + notas);
         
-        //creamos el array de notas "practicas"
-        practicas = new int[numAlumnos];
-        for(int i=0; i < practicas.length; i++){
-            practicas[i] = (int)(Math.random()*11);
-        }
-        //Creamos el vector calificaciones
-        calificaciones = new float[numAlumnos];
-        for(int i = 0; i<control.length; i++){
-            calificaciones[i] = 
-                    (((float) control[i] 
-                    + (float) practicas[i]) 
-                    / 2);
-        }
+        // Mostramos prácticas y calificaciones (los bucles de llenado se eliminaron de aquí)
         System.out.println("Prácticas      :" + Arrays.toString(practicas));
         System.out.println("Calificaciones :" + Arrays.toString(calificaciones));
         
@@ -96,6 +88,7 @@ public class EjercicioArrays {
                 + (i+1) + " = " 
                 + sol + "%");
         }
+        
         //Aprobados y suspensos
         aprobados = new int[numAlumnos];
         suspensos = new int[numAlumnos];
@@ -114,6 +107,7 @@ public class EjercicioArrays {
                 + Arrays.toString(aprobados));
         System.out.println("Relación de suspensos por nº de lista: " 
                 + Arrays.toString(suspensos));
+                
         //Resumen de aprobados y suspensos
         int i = 0;
         int x = 0;
